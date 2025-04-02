@@ -1,6 +1,7 @@
 package com.roan;
 
 import com.roan.entity.Player;
+import com.roan.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,15 +13,24 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3;
 
    public final int tileSize = originalTileSize * scale; //48x48
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = maxScreenCol * tileSize; //768 pixels
-    final int screenHeight = maxScreenRow * tileSize; //576 pixels
+   public final int maxScreenCol = 16;
+   public final int maxScreenRow = 12;
+   public final int screenWidth = maxScreenCol * tileSize; //768 pixels
+    public final int screenHeight = maxScreenRow * tileSize; //576 pixels
+
+
+    //world map parameters
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxScreenCol;
+    public final int worldHeight = tileSize * maxScreenRow;
+
 
     //FPS
 
     int FPS = 60;
 
+    TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
@@ -76,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g;
 
+        tileManager.draw(g2d);
         player.draw(g2d);
 
         g2d.dispose();
