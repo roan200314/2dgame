@@ -1,6 +1,7 @@
 package com.roan;
 
 import com.roan.entity.Player;
+import com.roan.object.SuperObject;
 import com.roan.tile.TileManager;
 
 import javax.swing.*;
@@ -34,7 +35,9 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public AssetSetter assetSetter = new AssetSetter(this);
     public Player player = new Player(this, keyH);
+    public SuperObject[] obj = new SuperObject[10];
 
 
     public GamePanel() {
@@ -43,6 +46,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setUpGame() {
+        assetSetter.setObject();
     }
 
     public void startGameThread() {
@@ -87,7 +94,18 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g;
 
+
+        //draw tiles
         tileManager.draw(g2d);
+
+        //draw object
+        for (SuperObject superObject : obj) {
+            if (superObject != null) {
+                superObject.draw(g2d, this);
+            }
+        }
+
+        //draw player
         player.draw(g2d);
 
         g2d.dispose();
