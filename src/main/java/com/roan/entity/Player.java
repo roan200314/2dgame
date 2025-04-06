@@ -2,6 +2,7 @@ package com.roan.entity;
 
 import com.roan.GamePanel;
 import com.roan.KeyHandler;
+import com.roan.UI;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -129,28 +130,36 @@ public class Player extends Entity {
                 case "Key":
                     gp.playSE(4);
                     hasKey++;
-                   gp.obj[index] = null;
-                   System.out.println("Keys: " + hasKey + " remaining");
+                    gp.obj[index] = null;
+                    gp.ui.showMessage("You picked up a " + objectName);
                    break;
                 case "Chest":
                     if (hasKey > 0) {
                         gp.playSE(2);
                         gp.obj[index] = null;
                         hasKey--;
-                        System.out.println("Keys: " + hasKey + " remaining");
+                        gp.ui.showMessage("You opened a " + objectName);
+                    } else {
+                        gp.ui.showMessage("You need a key to open the chest");
                     }
+
                    break;
                 case "Door":
                     if (hasKey > 0) {
                         gp.playSE(1);
                         gp.obj[index] = null;
                         hasKey--;
-                        System.out.println("Keys: " + hasKey + " remaining");
+                        gp.ui.showMessage("You opened the" + objectName);
+                    } else {
+                        gp.ui.showMessage("You need a key to open the door!");
                     }
                     break;
                 case "Sword":
                     gp.obj[index] = null;
-                        System.out.println("You picked up the sword Enma");
+                    gp.ui.showMessage("You picked up the sword Enma!");
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(5);
                     break;
 
             }
