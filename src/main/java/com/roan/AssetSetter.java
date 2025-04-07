@@ -18,19 +18,19 @@ public class AssetSetter {
         gp.obj[0].worldY = 8 * gp.tileSize;
 
         gp.obj[3] = new OBJ_Key(gp);
-        gp.obj[3].worldX = 4 * gp.tileSize;
-        gp.obj[3].worldY = 7 * gp.tileSize;
+        gp.obj[3].worldX = 3 * gp.tileSize;
+        gp.obj[3].worldY = 48 * gp.tileSize;
 
         gp.obj[1] = new OBJ_Door(gp);
-        gp.obj[1].worldX = 6 * gp.tileSize;
-        gp.obj[1].worldY = 5 * gp.tileSize;
+        gp.obj[1].worldX = 25 * gp.tileSize;
+        gp.obj[1].worldY = 15 * gp.tileSize;
 
         gp.obj[2] = new OBJ_Chest(gp);
-        gp.obj[2].worldX = 6 * gp.tileSize;
-        gp.obj[2].worldY = 2 * gp.tileSize;
+        gp.obj[2].worldX = 25 * gp.tileSize;
+        gp.obj[2].worldY = 11 * gp.tileSize;
 
         gp.obj[4] = new OBJ_Sword(gp);
-        gp.obj[4].worldX = 7 * gp.tileSize;
-        gp.obj[4].worldY = 21 * gp.tileSize;
+        gp.obj[4].worldX = 48 * gp.tileSize;
+        gp.obj[4].worldY = 47 * gp.tileSize;
     }
 }
