@@ -19,7 +19,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[20];
+        tile = new Tile[30];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -28,8 +28,9 @@ public class TileManager {
     public void getTileImage() {
             setUp(0, "grass", false);
             setUp(1, "stone", true);
+            setUp(19, "tree", true);
             setUp(2, "water", true);
-            setUp(3, "tree", true);
+            setUp(3, "grass2", false);
             setUp(4, "sand", false);
             setUp(5, "devilGround", false);
             setUp(6, "devilGroundSkull", false);
@@ -37,6 +38,15 @@ public class TileManager {
             setUp(8, "dirt", false);
             setUp(9, "tombStone", true);
             setUp(10, "tombStone2", true);
+            setUp(11, "water", true);
+            setUp(12, "bottomWater", true);
+            setUp(13, "leftWater", true);
+            setUp(14, "topWater", true);
+            setUp(15, "rightWater", true);
+            setUp(16, "rightTopWater", true);
+            setUp(17, "rightBottomWater", true);
+            setUp(18, "leftBottomWater", true);
+            setUp(20, "leftTopWater", true);
 
     }
     public void setUp(int index, String imagePath, boolean collision) {
