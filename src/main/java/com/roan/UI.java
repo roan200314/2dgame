@@ -4,6 +4,7 @@ import com.roan.object.OBJ_Key;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
@@ -13,6 +14,8 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
+    double playTime;
+    DecimalFormat df = new DecimalFormat("#0.00");
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -42,17 +45,23 @@ public class UI {
 
             text = "You found the treasure!";
             textLength = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth();
-
             x = gp.screenWidth / 2 - textLength / 2;
             y = gp.screenHeight / 2 - (gp.tileSize*3);
             g2d.drawString(text, x, y);
 
+
+
+            text = "Your time is:  " + df.format(playTime) + " seconds";
+            textLength = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth();
+            x = gp.screenWidth / 2 - textLength / 2;
+            y = gp.screenHeight / 2 + (gp.tileSize*4);
+            g2d.drawString(text, x, y);
+
+
             g2d.setFont(arial_80);
             g2d.setColor(Color.yellow);
-
             text = "Congratulations!";
             textLength = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth();
-
             x = gp.screenWidth / 2 - textLength / 2;
             y = gp.screenHeight / 2 + (gp.tileSize*2);
             g2d.drawString(text, x, y);
@@ -64,6 +73,10 @@ public class UI {
             g2d.setColor(Color.white);
             g2d.drawImage(keyImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
             g2d.drawString("x: " + gp.player.hasKey, 74,65);
+
+            //time
+            playTime += (double) 1/60;
+            g2d.drawString("Time: " + df.format(playTime), gp.tileSize*11, 65);
 
             //draw message
             if (messageOn) {
