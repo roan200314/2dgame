@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
+    GamePanel gp;
     //debug
     public boolean checkDrawTime = false;
 
@@ -13,6 +14,10 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
     }
 
     @Override
@@ -31,10 +36,18 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             right = true;
         }
+        if (code == KeyEvent.VK_P) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            }
+            else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
+        }
         if (code == KeyEvent.VK_T) {
-            if (checkDrawTime == false) {
+            if (!checkDrawTime) {
                 checkDrawTime = true;
-            } else if (checkDrawTime == true){
+            } else {
                 checkDrawTime = false;
             }
         }

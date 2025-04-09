@@ -16,7 +16,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -40,7 +39,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 25;
         worldY = gp.tileSize * 26;
-        speed = 14;
+        speed = 4;
         direction = "down";
     }
 
@@ -134,45 +133,7 @@ public class Player extends Entity {
     public void pickUpObject(int index) {
 
         if (index != 999) {
-            String objectName = gp.obj[index].name;
 
-            switch (objectName) {
-                case "Key":
-                    gp.playSE(4);
-                    hasKey++;
-                    gp.obj[index] = null;
-                    gp.ui.showMessage("You picked up a " + objectName);
-                   break;
-                case "Chest":
-                    if (hasKey > 0) {
-                        gp.playSE(2);
-                        gp.obj[index] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You opened a " + objectName);
-                    } else {
-                        gp.ui.showMessage("You need a key to open the chest");
-                    }
-
-                   break;
-                case "Door":
-                    if (hasKey > 0) {
-                        gp.playSE(1);
-                        gp.obj[index] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You opened the" + objectName);
-                    } else {
-                        gp.ui.showMessage("You need a key to open the door!");
-                    }
-                    break;
-                case "Sword":
-                    gp.obj[index] = null;
-                    gp.ui.showMessage("You picked up the sword Enma!");
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    gp.playSE(5);
-                    break;
-
-            }
         }
     }
 
