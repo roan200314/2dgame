@@ -61,7 +61,7 @@ public class Player extends Entity {
 
         try {
 
-            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName +".png"));
+            image = ImageIO.read(getClass().getResourceAsStream(imageName +".png"));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
 
@@ -92,6 +92,10 @@ public class Player extends Entity {
             //check object collision
           int objIndex = gp.cChecker.checkObject(this, true);
           pickUpObject(objIndex);
+
+          //check NPC collision
+            int npcIndex = gp.cChecker.checkEntityCollision(this, gp.npc);
+            interactNPC(npcIndex);
 
             //If collision is false player can move
             if (!collisionOn) {
@@ -133,6 +137,12 @@ public class Player extends Entity {
 
         if (index != 999) {
 
+        }
+    }
+
+    public void interactNPC(int index) {
+        if (index != 999) {
+            System.out.println("Collision happend bruh");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.roan;
 
+import com.roan.entity.Entity;
 import com.roan.entity.Player;
 import com.roan.object.SuperObject;
 import com.roan.tile.TileManager;
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
     //Entity and object
     public Player player = new Player(this, keyH);
     public SuperObject[] obj = new SuperObject[10];
+    public Entity[] npc = new Entity[10];
 
     // Game state
     public int gameState;
@@ -59,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setUpGame() {
         assetSetter.setObject();
+        assetSetter.setNpc();
         playMusic(0);
         gameState = playState;
     }
@@ -99,7 +102,14 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         if (gameState == playState) {
+            //player
             player.update();
+            //npc
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
 
@@ -127,6 +137,13 @@ public class GamePanel extends JPanel implements Runnable {
         for (SuperObject superObject : obj) {
             if (superObject != null) {
                 superObject.draw(g2d, this);
+            }
+        }
+
+        //NPC
+        for (int i = 0; i < obj.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2d);
             }
         }
 

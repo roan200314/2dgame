@@ -1,5 +1,6 @@
 package com.roan;
 
+import com.roan.entity.NPC_OldMan;
 import com.roan.object.*;
 
 public class AssetSetter {
@@ -33,5 +34,10 @@ public class AssetSetter {
 //        gp.obj[6] = new OBJ_BossGate(gp);
 //        gp.obj[6].worldX = 42 * gp.tileSize;
 //        gp.obj[6].worldY = 39 * gp.tileSize;
+    }
+    public void setNpc() {
+        gp.npc[0] = new NPC_OldMan(gp);
+        gp.npc[0].worldX = gp.tileSize * 21;
+        gp.npc[0].worldY = gp.tileSize * 21;
     }
 }
