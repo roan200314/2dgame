@@ -1,11 +1,5 @@
 package com.roan;
-
-import com.roan.object.OBJ_Key;
-import com.roan.object.OBJ_MasterKey;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
@@ -15,8 +9,7 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
-    double playTime;
-    DecimalFormat df = new DecimalFormat("#0.00");
+    public String currentDialogue = "";
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -36,14 +29,54 @@ public class UI {
         g2d.setFont(arial_40);
         g2d.setColor(Color.white);
 
+
+        //play State
         if (gp.gameState == gp.playState) {
             // do playstate stuff
         }
+        //Pause State
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
         }
+        //Dialogue state
+        if(gp.gameState == gp.dialogueState) {
+            drawDialoguesScreen();
+        }
 
     }
+
+    private void drawDialoguesScreen() {
+        //Window
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 4;
+
+        drawSubWindow(x, y, width, height);
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 20F));
+        x += gp.tileSize;
+        y += gp.tileSize;
+
+        for (String line : currentDialogue.split("\n")) {
+            g2d.drawString(line, x, y);
+            y += 40;
+        }
+    }
+
+
+    public void drawSubWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(0, 0, 0,210);
+        g2d.setColor(c);
+        g2d.fillRoundRect(x, y, width, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        g2d.setColor(c);
+        g2d.setStroke(new BasicStroke(5));
+        g2d.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+    }
+
     public void drawPauseScreen() {
         String text = "PAUSED";
         int x = getXforText(text);

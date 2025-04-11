@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity {
         speed = 1;
 
         getImage();
+        setDialogue();
     }
     public void getImage() {
         up1 = setUp("/npc/oldMan_up_1");
@@ -23,8 +24,16 @@ public class NPC_OldMan extends Entity {
         right2 = setUp("/npc/oldMan_right_2");
         down1 = setUp("/npc/oldMan_down_1");
         down2 = setUp("/npc/oldMan_down_2");
-
     }
+
+    public void setDialogue() {
+        dialogue[0] = "Hello young man";
+        dialogue[1] = "Your finally here..";
+        dialogue[2] = "I have been waiting 20 years for your arrival.";
+        dialogue[3] = "Save Eldia from the terror the king has bestowed us with, \n i beg you...";
+    }
+
+
     public void setAction() {
 
         actionLockCounter++;
@@ -48,6 +57,9 @@ public class NPC_OldMan extends Entity {
             }
             actionLockCounter = 0;
         }
+    }
+    public void speak() {
+        super.speak();
     }
 
 }

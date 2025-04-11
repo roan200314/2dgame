@@ -49,8 +49,8 @@ public class Player extends Entity {
         left2 = setUp("/player/boy_left_2");
         right1 = setUp("/player/boy_right_1");
         right2 = setUp("/player/boy_right_2");
-        down1 = setUp("/player/boy_down_1");
-        down2 = setUp("/player/boy_down_2");
+        down1 = setUp("/player/boy_down_2");
+        down2 = setUp("/player/boy_down_1");
 
     }
 
@@ -141,9 +141,16 @@ public class Player extends Entity {
     }
 
     public void interactNPC(int index) {
+
+
         if (index != 999) {
-            System.out.println("Collision happend bruh");
+
+            if (keyH.enter) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[index].speak();
+            }
         }
+        gp.keyH.enter = false;
     }
 
     public void draw(Graphics2D g2d) {
