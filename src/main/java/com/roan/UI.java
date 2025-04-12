@@ -10,6 +10,7 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
     public String currentDialogue = "";
+    public int commandNum = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -30,6 +31,11 @@ public class UI {
         g2d.setColor(Color.white);
 
 
+        //Title state
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
+
         //play State
         if (gp.gameState == gp.playState) {
             // do playstate stuff
@@ -44,6 +50,60 @@ public class UI {
         }
 
     }
+
+    private void drawTitleScreen() {
+
+
+        //title name
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 46F));
+        String text = "The undestined destined";
+        int x = getXforText(text);
+        int y = gp.tileSize * 3;
+
+        //Shadow
+        g2d.setColor(Color.black);
+        g2d.drawString(text, x + 3, y + 4);
+
+
+        g2d.setColor(Color.white);
+        g2d.drawString(text, x, y);
+
+        //Image
+        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+        y += gp.tileSize * 2;
+        g2d.drawImage(gp.player.titleScreen, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 48F));
+        text = "NEW GAME";
+        x = getXforText(text);
+        y += gp.tileSize * 4;
+        g2d.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2d.drawString(">", x-gp.tileSize, y);
+        }
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 48F));
+        text = "LOAD GAME";
+        x = getXforText(text);
+        y += gp.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2d.drawString(">", x-gp.tileSize, y);
+        }
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 48F));
+        text = "QUIT";
+        x = getXforText(text);
+        y += gp.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2d.drawString(">", x-gp.tileSize, y);
+        }
+
+
+    }
+
 
     private void drawDialoguesScreen() {
         //Window

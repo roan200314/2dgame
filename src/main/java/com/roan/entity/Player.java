@@ -51,6 +51,7 @@ public class Player extends Entity {
         right2 = setUp("/player/boy_right_2");
         down1 = setUp("/player/boy_down_2");
         down2 = setUp("/player/boy_down_1");
+        titleScreen = setUp("/player/titleScreen");
 
     }
 
