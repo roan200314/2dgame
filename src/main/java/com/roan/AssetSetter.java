@@ -1,6 +1,7 @@
 package com.roan;
 
 import com.roan.entity.NPC_ChineseMan;
+import com.roan.entity.NPC_MobTalk;
 import com.roan.entity.NPC_OldMan;
 import com.roan.object.*;
 
@@ -44,5 +45,9 @@ public class AssetSetter {
         gp.npc[1] = new NPC_ChineseMan(gp);
         gp.npc[1].worldX = gp.tileSize * 3;
         gp.npc[1].worldY = gp.tileSize * 3;
+
+        gp.npc[2] = new NPC_MobTalk(gp);
+        gp.npc[2].worldX = gp.tileSize * 40;
+        gp.npc[2].worldY = gp.tileSize * 36;
     }
 }
