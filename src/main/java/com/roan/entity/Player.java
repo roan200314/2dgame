@@ -38,8 +38,12 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 25;
         worldY = gp.tileSize * 26;
-        speed = 12;
+        speed = 4;
         direction = "down";
+
+        //Player stats
+        maxLife = 6;
+        life = maxLife;
     }
 
     public void getPlayerImage() {

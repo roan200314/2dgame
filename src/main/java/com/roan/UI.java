@@ -1,10 +1,15 @@
 package com.roan;
+import com.roan.object.OBJ_Heart;
+import com.roan.object.SuperObject;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class UI {
     GamePanel gp;
     Graphics2D g2d;
     Font arial_40, arial_80;
+    BufferedImage heart_full, heart_empty, heart_half;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -16,6 +21,11 @@ public class UI {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.BOLD, 40);
         arial_80 = new Font("Arial", Font.BOLD, 80);
+
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_empty = heart.image3;
+        heart_half = heart.image2;
     }
 
     public void showMessage(String msg) {
@@ -38,17 +48,49 @@ public class UI {
 
         //play State
         if (gp.gameState == gp.playState) {
-            // do playstate stuff
+            drawPlayerLife();
         }
         //Pause State
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
+            drawPlayerLife();
         }
         //Dialogue state
         if(gp.gameState == gp.dialogueState) {
             drawDialoguesScreen();
+            drawPlayerLife();
         }
 
+    }
+
+    private void drawPlayerLife() {
+
+
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
+
+
+        //draw blank hearts
+        while (i < gp.player.maxLife / 2) {
+            g2d.drawImage(heart_empty, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+
+        //Reset
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
+        while (i < gp.player.life) {
+            g2d.drawImage(heart_half, x, y, null);
+            i++;
+            if (i < gp.player.life) {
+                g2d.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
     }
 
     private void drawTitleScreen() {
