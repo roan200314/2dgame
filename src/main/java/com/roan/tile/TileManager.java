@@ -47,6 +47,7 @@ public class TileManager {
             setUp(17, "rightBottomWater", true);
             setUp(18, "leftBottomWater", true);
             setUp(20, "leftTopWater", true);
+            setUp(21, "hole", false);
 
     }
     public void setUp(int index, String imagePath, boolean collision) {

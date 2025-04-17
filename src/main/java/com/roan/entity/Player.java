@@ -38,7 +38,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 25;
         worldY = gp.tileSize * 26;
-        speed = 4;
+        speed = 8;
         direction = "down";
 
         //Player stats
@@ -102,6 +102,10 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntityCollision(this, gp.npc);
             interactNPC(npcIndex);
 
+            //Check event
+            gp.eHandler.checkEvent();
+            gp.keyH.enter = false;
+
             //If collision is false player can move
             if (!collisionOn) {
                 switch (direction) {
@@ -155,7 +159,7 @@ public class Player extends Entity {
                 gp.npc[index].speak();
             }
         }
-        gp.keyH.enter = false;
+
     }
 
     public void draw(Graphics2D g2d) {
