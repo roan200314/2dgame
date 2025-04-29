@@ -48,7 +48,7 @@ public class NPC_MobTalk extends Entity{
     }
 
     public void setDialogue() {
-        dialogue[0] = "You.. You smell foul, are you perhapss.. \n Tarsnished?";
+        dialogue[0] = "You.. You smell foul, are you perhapss.. \n Tarnished?";
         dialogue[1] = "The mob king resides here. What business.. \nssss do thy have here??";
         dialogue[2] = "You want to kill him? Goodluck i guess.. \n (Is he from the prophecy?)";
     }
