@@ -1,22 +1,14 @@
 package com.roan.object;
 
 import com.roan.GamePanel;
+import com.roan.entity.Entity;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
-public class OBJ_Sword extends SuperObject {
-
-    GamePanel gp;
+public class OBJ_Sword extends Entity {
 
     public OBJ_Sword(GamePanel gp){
-        name = "Sword";
 
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/sword.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(gp);
+        name = "Sword";
+        down1 = setUp("/objects/sword");
     }
 }

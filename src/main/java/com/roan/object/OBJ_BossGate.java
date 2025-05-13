@@ -1,23 +1,18 @@
 package com.roan.object;
 
 import com.roan.GamePanel;
+import com.roan.entity.Entity;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
-public class OBJ_BossGate extends SuperObject{
+public class OBJ_BossGate extends Entity {
 
-    GamePanel gp;
 
     public OBJ_BossGate(GamePanel gp){
-        name = "BossGate";
 
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/bossDoor.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(gp);
+
+        name = "BossGate";
+        down1 = setUp("/objects/door");
         collision = true;
     }
 }

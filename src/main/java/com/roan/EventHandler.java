@@ -40,10 +40,21 @@ public class EventHandler {
 
     public void checkEvent() {
 
-        //event happens
-        if (hit(2, 1, "right")) {damagePit(2, 1, gp.dialogueState);}
-        if (hit(39,5,"left")) {healingPool(39, 5, gp.dialogueState);}
-        if (hit(3, 42, "left")) {teleport(3, 42, gp.dialogueState); }
+        //Check if player is more than 1 tile away from LAST event.
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
+        int distance = Math.max(xDistance, yDistance);
+        if (distance > gp.tileSize) {
+            canTouchEvent = true;
+        }
+
+        if (canTouchEvent == true) {
+            //event happens
+            if (hit(2, 1, "any")) {damagePit(2, 1, gp.dialogueState);}
+            if (hit(39,5,"left")) {healingPool(39, 5, gp.dialogueState);}
+            if (hit(3, 42, "left")) {teleport(3, 42, gp.dialogueState); }
+        }
+
 
     }
 
@@ -54,6 +65,7 @@ public class EventHandler {
         gp.player.life -=1;
         eventRect[col][row].eventDone = true;
 
+        canTouchEvent = false;
     }
 
     public void healingPool(int col, int row, int gameState) {
@@ -89,6 +101,8 @@ public class EventHandler {
 
                 previousEventX = gp.player.worldX;
                 previousEventY = gp.player.worldY;
+
+
             }
         }
 

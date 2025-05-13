@@ -1,22 +1,14 @@
 package com.roan.object;
 
 import com.roan.GamePanel;
+import com.roan.entity.Entity;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
-public class OBJ_MasterKey extends SuperObject {
-
-    GamePanel gp;
+public class OBJ_MasterKey extends Entity {
 
     public OBJ_MasterKey(GamePanel gp){
-        name = "MasterKey";
 
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/masterKey.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super(gp);
+        name = "MasterKey";
+        down1 = setUp("/objects/MasterKey");
     }
 }

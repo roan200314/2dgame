@@ -1,31 +1,16 @@
 package com.roan.object;
 
 import com.roan.GamePanel;
+import com.roan.entity.Entity;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
-public class OBJ_Heart  extends  SuperObject{
-    GamePanel gp;
+public class OBJ_Heart  extends Entity {
 
     public OBJ_Heart(GamePanel gp){
-
-            this.gp = gp;
+        super(gp);
 
             name = "Heart";
-
-            try {
-                image = ImageIO.read(getClass().getResourceAsStream("/hearts/fullHeart.png"));
-                image2 = ImageIO.read(getClass().getResourceAsStream("/hearts/halfHeart.png"));
-                image3 = ImageIO.read(getClass().getResourceAsStream("/hearts/emptyHeart.png"));
-
-                image =  uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-                image2 = uTool.scaleImage(image2, gp.tileSize, gp.tileSize);
-                image3 = uTool.scaleImage(image3, gp.tileSize, gp.tileSize);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            collision = true;
+            image = setUp("/hearts/fullHeart.png");
+            image2 = setUp("/hearts/halfHeart.png");
+            image3 = setUp("/hearts/emptyHeart.png");
         }
     }
