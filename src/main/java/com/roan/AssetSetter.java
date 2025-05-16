@@ -3,6 +3,7 @@ package com.roan;
 import com.roan.entity.NPC_ChineseMan;
 import com.roan.entity.NPC_MobTalk;
 import com.roan.entity.NPC_OldMan;
+import com.roan.monster.MON_GreenSlime;
 import com.roan.object.*;
 
 public class AssetSetter {
@@ -49,5 +50,12 @@ public class AssetSetter {
         gp.npc[2] = new NPC_MobTalk(gp);
         gp.npc[2].worldX = gp.tileSize * 40;
         gp.npc[2].worldY = gp.tileSize * 36;
+    }
+
+    public void setMonster() {
+
+        gp.monster[0] = new MON_GreenSlime(gp);
+        gp.monster[0].worldX = gp.tileSize * 18;
+        gp.monster[0].worldY = gp.tileSize * 20;
     }
 }

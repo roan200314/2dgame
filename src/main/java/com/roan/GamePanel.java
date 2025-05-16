@@ -2,11 +2,13 @@ package com.roan;
 
 import com.roan.entity.Entity;
 import com.roan.entity.Player;
-import com.roan.object.SuperObject;
 import com.roan.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -41,8 +43,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     //Entity and object
     public Player player = new Player(this, keyH);
-    public SuperObject[] obj = new SuperObject[10];
+    public Entity[] obj = new Entity[10];
     public Entity[] npc = new Entity[10];
+    public Entity[] monster = new Entity[20];
+    ArrayList<Entity> entityList = new ArrayList<>();
+
 
     // Game state
     public int gameState;
@@ -63,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         assetSetter.setObject();
         assetSetter.setNpc();
+        assetSetter.setMonster();
         if (gameState == playState) {
             playMusic(0);
         }
@@ -113,6 +119,11 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    monster[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
 
@@ -141,22 +152,46 @@ public class GamePanel extends JPanel implements Runnable {
             //draw tiles
             tileManager.draw(g2d);
 
-            //draw object
-            for (SuperObject superObject : obj) {
-                if (superObject != null) {
-                    superObject.draw(g2d, this);
-                }
-            }
 
-            //NPC
-            for (int i = 0; i < obj.length; i++) {
+            //add entity to list
+            entityList.add(player);
+
+            for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
-                    npc[i].draw(g2d);
+                    entityList.add(npc[i]);
                 }
             }
 
-            //draw player
-            player.draw(g2d);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
+            }
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    entityList.add(monster[i]);
+                }
+            }
+            //sort
+
+            Collections.sort(entityList, new Comparator<Entity>() {
+                @Override
+                public int compare(Entity e1, Entity e2) {
+
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
+                }
+            });
+            //draw entity
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(g2d);
+            }
+
+            //Empty list
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.remove(i);
+            }
+
 
             //ui draw
             ui.draw(g2d);

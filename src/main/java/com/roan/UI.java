@@ -1,6 +1,6 @@
 package com.roan;
+import com.roan.entity.Entity;
 import com.roan.object.OBJ_Heart;
-import com.roan.object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ public class UI {
         arial_40 = new Font("Arial", Font.BOLD, 40);
         arial_80 = new Font("Arial", Font.BOLD, 80);
 
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_empty = heart.image3;
         heart_half = heart.image2;

@@ -9,6 +9,6 @@ public class OBJ_MasterKey extends Entity {
 
         super(gp);
         name = "MasterKey";
-        down1 = setUp("/objects/MasterKey");
+        down1 = setUp("/objects/masterKey");
     }
 }
